@@ -26,9 +26,9 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
 
-    - name: Build with Gradle 9.2.0
+    - name: Build with Gradle
       run: |
-        ./gradlew assembleDebug --no-daemon --warning-mode=all
+        ./gradlew assembleDebug --no-daemon
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
