@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.22.1)
 
+project("novaflarehelper")
+
+# 设置 C++ 标准
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# 查找必要的库
 find_library(log-lib log)
 find_library(android-lib android)
 
@@ -15,6 +19,7 @@ target_include_directories(native_app_glue PUBLIC
     ${ANDROID_NDK}/sources/android/native_app_glue
 )
 
+# 主库
 add_library(
     novaflarehelper
     SHARED

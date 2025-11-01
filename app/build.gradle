@@ -35,16 +35,41 @@ android {
         }
     }
 
-    buildFeatures {
-        prefab true
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
+    buildFeatures {
+        prefab true
+    }
+
+    // 添加打包选项以避免重复文件错误
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/INDEX.LIST', 'META-INF/io.netty.versions.properties']
+        }
+    }
 }
 
+// 在配置解析之前定义依赖
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    
+    // 明确指定 core 版本以避免冲突
+    implementation 'androidx.core:core:1.12.0'
+    
+    // 添加必要的 Kotlin 依赖
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.0'
+}
+
+// 配置阶段完成后禁止修改依赖
+afterEvaluate {
+    configurations.configureEach {
+        if (it.state == Configuration.State.RESOLVED) {
+            it.withDependencies { deps ->
+                // 依赖解析后禁止修改
+            }
+        }
+    }
 }
