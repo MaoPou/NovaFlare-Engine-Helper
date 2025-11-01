@@ -30,6 +30,6 @@ jobs:
       
     - name: Upload Artifact
       uses: actions/upload-artifact@main
-        with:
+      with:
         name: NovaFlareHelper
         path: app/build/outputs/apk/debug/app-debug.apk
