@@ -43,9 +43,6 @@ android {
     buildFeatures {
         prefab false
     }
-    
-    // 添加 NDK 版本指定
-    ndkVersion '25.1.8937393'
 }
 
 dependencies {
